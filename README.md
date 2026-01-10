@@ -1,8 +1,9 @@
 # 🌍 Air Quality NO2 Prediction - MLOps Project
 
-[![CI/CD Pipeline](https://github.com/YOUR_USERNAME/MLOp-Project/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/MLOp-Project/actions/workflows/ci.yml)
-[![Tests](https://img.shields.io/badge/tests-9%20passed-success)](https://github.com/YOUR_USERNAME/MLOp-Project)
-[![Coverage](https://img.shields.io/badge/coverage-94%25-brightgreen)](https://github.com/YOUR_USERNAME/MLOp-Project)
+
+[![CI/CD Pipeline](https://github.com/manartrimeche/MLOp-Project/actions/workflows/ci.yml/badge.svg)](https://github.com/manartrimeche/MLOp-Project/actions/workflows/ci.yml)
+[![Tests](https://img.shields.io/badge/tests-9%20passed-success)](https://github.com/manartrimeche/MLOp-Project)
+[![Coverage](https://img.shields.io/badge/coverage-94%25-brightgreen)](https://github.com/manartrimeche/MLOp-Project)
 [![Python](https://img.shields.io/badge/python-3.11+-blue)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104.0-009688)](https://fastapi.tiangolo.com/)
 [![MLflow](https://img.shields.io/badge/MLflow-2.9.0-0194E2)](https://mlflow.org/)

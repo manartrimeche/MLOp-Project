@@ -1,0 +1,15 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Installer MLflow
+RUN pip install --no-cache-dir mlflow==2.9.0
+
+# Copier la base de données
+COPY mlflow.db ./mlflow.db
+
+# Exposer le port MLflow UI
+EXPOSE 5000
+
+# Commande de démarrage
+CMD ["mlflow", "ui", "--host", "0.0.0.0", "--port", "5000", "--backend-store-uri", "sqlite:///mlflow.db"]

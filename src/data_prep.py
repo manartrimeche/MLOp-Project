@@ -23,8 +23,7 @@ def clean_and_prepare(df: pd.DataFrame):
 
     # Remplir les NaN numériques par la moyenne
     for col in df.select_dtypes(include='number').columns:
-        df[col].fillna(df[col].mean(), inplace=True)
-
+        df[col] = df[col].fillna(df[col].mean())
     # Option: normaliser quelques colonnes (si elles existent)
     colonnes_a_normaliser = [
         'Consommation', 'Température', 'Pression',

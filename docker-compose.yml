@@ -1,15 +1,13 @@
-# docker-compose.yml
-version: '3.8'
-
 services:
+  # API de prédiction
   api:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
+    container_name: air-quality-api
     ports:
       - "8000:8000"
     volumes:
+      - ./mlflow.db:/app/mlflow.db
       - ./models:/app/models
     environment:
-      - PYTHONUNBUFFERED=1
+      - MLFLOW_TRACKING_URI=sqlite:///mlflow.db
     restart: unless-stopped

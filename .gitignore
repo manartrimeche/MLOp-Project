@@ -2,29 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# Virtual Environment
 .venv/
 venv/
-ENV/
-env/
 
 # MLflow
 mlruns/
@@ -32,41 +11,21 @@ mlflow.db
 mlflow.db-shm
 mlflow.db-wal
 
-# Models
+# Models (ne pas commit les .pkl mais garder le dossier)
 models/*.pkl
-!models/.gitkeep
 
-# Data
+# Data (ne pas commit les CSV mais garder les .dvc)
 data/*.csv
-data/*.dvc
-!data/.gitkeep
+data/*.xlsx
 
 # Testing
 .pytest_cache/
 .coverage
-coverage.xml
 htmlcov/
-.tox/
 
 # IDE
 .vscode/
 .idea/
-*.swp
-*.swo
-*.sublime-project
-*.sublime-workspace
 
 # OS
 .DS_Store
-Thumbs.db
-*.log
-
-# Docker
-.dockerignore
-
-# Environment variables
-.env
-.env.local
-
-# DVC
-.dvc/

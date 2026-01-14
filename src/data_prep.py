@@ -57,3 +57,21 @@ def load_regression_data():
     df = load_raw_data(data_path)
     df = clean_and_prepare(df)
     return get_regression_splits(df)
+
+if __name__ == "__main__":
+    print("📊 Chargement et nettoyage des données...")
+    
+    # Charger les données brutes
+    df = load_raw_data("data/prédiction_de_la_qualité_de_air.csv")
+    
+    # Nettoyer et préparer
+    df = clean_and_prepare(df)
+    
+    # Sauvegarder le dataset nettoyé
+    output_path = "data/processed_data.csv"
+    df.to_csv(output_path, index=False)
+    
+    print(f"✅ Dataset nettoyé sauvegardé: {output_path}")
+    print(f"   - {len(df)} lignes")
+    print(f"   - {len(df.columns)} colonnes")
+    print(f"   - Colonnes: {list(df.columns)}")

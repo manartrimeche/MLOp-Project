@@ -15,8 +15,11 @@ MODEL_PATH = MODELS_DIR / "random_forest_no2_model.pkl"
 FEATURES_PATH = MODELS_DIR / "feature_names.json"
 
 # Configuration MLflow
-mlflow.set_tracking_uri("sqlite:///mlflow.db")
-mlflow.set_experiment("air-quality-no2-prediction")
+MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI", "sqlite:///mlflow.db")
+MLFLOW_EXPERIMENT_NAME = os.getenv("MLFLOW_EXPERIMENT_NAME", "air-quality-no2-prediction")
+
+mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
+mlflow.set_experiment(MLFLOW_EXPERIMENT_NAME)
 
 
 def train_random_forest(n_estimators=100, max_depth=None, min_samples_split=2, random_state=42):

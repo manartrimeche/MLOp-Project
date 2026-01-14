@@ -5,6 +5,10 @@ __pycache__/
 .venv/
 venv/
 
+# Environment Variables
+.env
+.env.docker
+
 # MLflow
 mlruns/
 mlflow.db

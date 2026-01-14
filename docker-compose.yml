@@ -1,13 +1,71 @@
+version: '3.8'
+
 services:
+  # MLflow Tracking Server
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    container_name: air-quality-mlflow
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlflow.db:/mlflow.db
+      - ./mlruns:/mlruns
+      - ./models:/models
+    environment:
+      - MLFLOW_BACKEND_STORE_URI=sqlite:///mlflow.db
+      - MLFLOW_DEFAULT_ARTIFACT_ROOT=/mlruns
+    command: mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root /mlruns --host 0.0.0.0 --port 5000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
   # API de prédiction
   api:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: air-quality-api
+    depends_on:
+      mlflow:
+        condition: service_healthy
     ports:
       - "8000:8000"
     volumes:
       - ./mlflow.db:/app/mlflow.db
+      - ./mlruns:/app/mlruns
       - ./models:/app/models
+      - ./data:/app/data
     environment:
-      - MLFLOW_TRACKING_URI=sqlite:///mlflow.db
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - MLFLOW_EXPERIMENT_NAME=air-quality-final-model
+      - MODEL_NAME=air-quality-no2-predictor
+      - MODEL_STAGE=Production
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - LOG_LEVEL=INFO
+      - PYTHONUNBUFFERED=1
+    command: uvicorn src.api:app --host 0.0.0.0 --port 8000 --reload
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  mlflow_data:
+    driver: local
+  models_data:
+    driver: local
+  data_volume:
+    driver: local
+
+networks:
+  default:
+    name: air-quality-network
+    driver: bridge

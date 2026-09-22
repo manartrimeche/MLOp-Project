@@ -360,15 +360,3 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE).
 
 - [manartrimeche](https://github.com/manartrimeche)
 
-## 19. Contact
-
-Pour toute question ou contribution, ouvrez une issue sur le dépôt GitHub ou contactez le propriétaire du projet.
-
----
-
-Merci d'avoir visité ce projet. Si vous souhaitez, je peux aussi vous proposer :
-
-- une version README plus courte et plus élégante,
-- une version en anglais,
-- une version orientée portfolio / démonstration,
-- ou une version adaptée à un projet de stage ou de candidature.
